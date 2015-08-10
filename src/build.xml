@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="swf example" default="main" basedir=".">
+    <!-- load previously defined configuration properties file -->
+    <property file="build.properties" />
+    <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+    <target name="main" depends="clean, compile"/>
+    <target name="clean">
+        <delete dir="${DEPLOY_DIR}"/>
+        <mkdir dir="${DEPLOY_DIR}"/>
+    </target>
+    <target name="compile">
+        <mxmlc
+            file="${basedir}/Main.as"
+            output="${DEPLOY_DIR}/hashids.swf"
+            static-link-runtime-shared-libraries="true"
+            failonerror="true"
+            maxmemory="1024m">
+            <source-path path-element="${SRC_DIR}"/>
+            <source-path path-element="${FLEX_HOME}/frameworks"/>
+        </mxmlc>
+    </target>
+</project>
